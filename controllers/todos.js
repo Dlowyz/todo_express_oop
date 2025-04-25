@@ -44,7 +44,24 @@ updateTodo(req, res) {
     });
   }
   
-
+  deleteTodo(req, res) {
+    const todoId = req.params.id;
+  
+    const todoIndex = this.TODOS.findIndex((todo) => todo.id === todoId);
+  
+    if (todoIndex < 0) {
+      return res.status(404).json({
+        message: 'Todo not found'
+      });
+    }
+  
+    const deletedTodo = this.TODOS.splice(todoIndex, 1); // removes one item at index
+  
+    res.json({
+      message: 'Todo deleted',
+      deleted: deletedTodo[0]
+    });
+  }
 }
 
 export const TodoController = new todoController()
