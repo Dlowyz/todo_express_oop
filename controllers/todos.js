@@ -15,6 +15,11 @@ createTodo(req, res){
         newTodo: newTodo
     })
 }
+
+getTodos(req, res){
+    res.json({tasks: this.TODOS})
+}
+
 }
 
 export const TodoController = new todoController()
