@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import todoRoutes from './routes/todos.js'
+import { TodoController } from './controllers/todos.js'
 
 const app = express()
 const port = 3009
@@ -14,6 +15,7 @@ app.get('/json-test', (req, res) => {
     res.send({message: 'json oke'})
 })
 
-app.listen(port, () => {
-    console.log('server is connected at port '+port)
-})
+app.listen(port, async () => {
+    await TodoController.initTodos(); // ⬅️ Lae TODO-d failist
+    console.log(`server is connected at port ${port}`);
+  });
